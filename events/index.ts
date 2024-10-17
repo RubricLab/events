@@ -17,7 +17,21 @@ export class EventDispatcher<EventType extends GenericEventType> {
 		console.log('Not implemented')
 		console.log(channel, event)
 
+		await fetch('/api/core', {
+			method: 'POST',
+			body: JSON.stringify({
+				message: JSON.stringify(event) // TODO: match event type to target
+			})
+		})
+
 		// await eventHandlers[action]?.(data, username)
+	}
+
+	async publish<EventInstance extends Exclude<keyof EventType, number | symbol>>(
+		channel: string,
+		event: EventType[EventInstance]
+	) {
+		this.publisher.publish(channel, JSON.stringify(event))
 	}
 
 	subscribe<EventInstance extends Exclude<keyof EventType, number | symbol>>(
