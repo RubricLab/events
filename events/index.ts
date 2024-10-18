@@ -109,7 +109,6 @@ export function createEventActions<EventType extends GenericEventType>({
 			channel: string,
 			event: EventType[EventInstance]
 		) {
-			console.log('publishing event to ', channel)
 			publisher.publish(channel, JSON.stringify(event))
 		},
 
@@ -138,7 +137,6 @@ export function createEventsHandler({ redisURL }: { redisURL: string }) {
 			const encoder = new TextEncoder()
 
 			const listener = async (channel: string, message: string) => {
-				console.log('received message', message, ' to ', channel)
 				if (channel === id) {
 					await writer.write(encoder.encode(`data: ${message}\n\n`))
 				}

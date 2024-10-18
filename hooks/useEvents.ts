@@ -30,14 +30,14 @@ export function useEvents({ id }: { id: string }) {
 			}
 		}
 
-		setEvents([
-			{
-				type: 'System',
-				action: 'connection_opened',
-				data: {},
-				username: 'System'
-			}
-		])
+		// setEvents([
+		// 	{
+		// 		type: 'System',
+		// 		action: 'connection_opened',
+		// 		data: {},
+		// 		username: 'System'
+		// 	}
+		// ])
 
 		return () => {
 			eventSource.close()
