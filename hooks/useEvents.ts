@@ -1,48 +1,57 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import type { GenericEventType } from '../types'
+import { useEffect } from 'react'
+import type { ZodType, z } from 'zod'
 
-export interface Event<T, D> {
-	type: keyof GenericEventType
-	data: D
-	username?: string
-	action?: T
+type GenericEvents = Record<string, ZodType>
+
+export function createEventHooks<EventTypes extends GenericEvents>({
+	eventTypes
+}: { eventTypes: EventTypes }) {
+	return {
+		useEvents({
+			id,
+			events,
+			on
+		}: {
+			id: string
+			events: (keyof typeof eventTypes)[]
+			on: { [key in keyof typeof eventTypes]: (props: z.infer<(typeof eventTypes)[key]>) => void }
+		}) {
+			useEffect(() => {
+				if (!id) return
+
+				const eventSource = new EventSource(`/api/events?id=${id}`)
+
+				eventSource.onmessage = ({ data: { eventType, payload } }) => {
+					if (!eventTypes[eventType]) {
+						throw 'event'
+					}
+					if (!events.includes(eventType)) {
+						throw 'event not registered'
+					}
+					const callback = on[eventType]
+					if (callback) {
+						callback(payload)
+					}
+				}
+
+				return () => {
+					eventSource.close()
+				}
+			}, [id, eventTypes, on, events])
+		}
+	}
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export type ClientEvent = Event<string, Record<string, any>>
-
-export function useEvents({ id }: { id: string }) {
-	const [events, setEvents] = useState<ClientEvent[]>([])
-
-	useEffect(() => {
-		if (!id) return
-
-		const eventSource = new EventSource(`/api/events?id=${id}`)
-
-		eventSource.onmessage = event => {
-			try {
-				const data = JSON.parse(event.data) as ClientEvent
-				setEvents(prev => [...prev, data])
-			} catch (error) {
-				console.error('Error parsing event data:', error)
-			}
-		}
-
-		// setEvents([
-		// 	{
-		// 		type: 'System',
-		// 		action: 'connection_opened',
-		// 		data: {},
-		// 		username: 'System'
-		// 	}
-		// ])
-
-		return () => {
-			eventSource.close()
-		}
-	}, [id])
-
-	return { events }
-}
+// const { useEvents } = createEventHooks({
+// 	eventTypes: {
+// 		stockPriceChange: z.object({
+// 			ticker: z.string(),
+// 			price: z.number()
+// 		}),
+// 		sendMessage: z.object({
+// 			message: z.string()
+// 		})
+// 	}
+// })
