@@ -1,3 +1,4 @@
+- [2024-10-24] [add notify-monorepo action](https://github.com/RubricLab/events/commit/58b8bb61af0a633d7f36d5aa78f9f26bec076bc2)
 - [2024-10-22] [Add ioredis dep](https://github.com/RubricLab/events/commit/37850e8e16a8127c92d7340ff3a3ca7ae6b8c1fe)
 - [2024-10-18] [cleanup](https://github.com/RubricLab/events/commit/2bda73ee524180ead7b55f3c7ee367da9f095c65)
 - [2024-10-18] [migrate event to functions vs. class](https://github.com/RubricLab/events/commit/5be674bb0013563b2c897742e676d6a059318dec)
