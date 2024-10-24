@@ -1,3 +1,3 @@
-import type { z } from 'zod'
+import type { ZodType } from "zod";
 
-export type GenericEventType = Record<string, z.infer<z.ZodTypeAny>>
+export type GenericEvents = Record<string, ZodType>;

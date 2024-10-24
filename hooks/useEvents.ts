@@ -1,57 +1,52 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import type { ZodType, z } from 'zod'
+import { useEffect } from "react";
+import { z } from "zod";
+import type { GenericEvents } from "../types";
 
-type GenericEvents = Record<string, ZodType>
+const dataSchema = z.object({
+  eventType: z.string(),
+  payload: z.any(),
+});
 
 export function createEventHooks<EventTypes extends GenericEvents>({
-	eventTypes
-}: { eventTypes: EventTypes }) {
-	return {
-		useEvents({
-			id,
-			events,
-			on
-		}: {
-			id: string
-			events: (keyof typeof eventTypes)[]
-			on: { [key in keyof typeof eventTypes]: (props: z.infer<(typeof eventTypes)[key]>) => void }
-		}) {
-			useEffect(() => {
-				if (!id) return
+  eventTypes,
+}: {
+  eventTypes: EventTypes;
+}) {
+  type EventTypeKeys = keyof EventTypes;
 
-				const eventSource = new EventSource(`/api/events?id=${id}`)
+  return {
+    useEvents({
+      id,
+      on,
+    }: {
+      id: string;
+      on: {
+        [key in EventTypeKeys]: (props: z.infer<EventTypes[key]>) => void;
+      };
+    }) {
+      useEffect(() => {
+        if (!id) return;
 
-				eventSource.onmessage = ({ data: { eventType, payload } }) => {
-					if (!eventTypes[eventType]) {
-						throw 'event'
-					}
-					if (!events.includes(eventType)) {
-						throw 'event not registered'
-					}
-					const callback = on[eventType]
-					if (callback) {
-						callback(payload)
-					}
-				}
+        const eventSource = new EventSource(`/api/events?id=${id}`);
 
-				return () => {
-					eventSource.close()
-				}
-			}, [id, eventTypes, on, events])
-		}
-	}
+        eventSource.onmessage = ({ data }) => {
+          const { eventType, payload } = dataSchema.parse(JSON.parse(data));
+
+          if (!eventType || !eventTypes[eventType]) {
+            throw `Unknown event: ${eventType}`;
+          }
+
+          const safePayload = eventTypes[eventType].parse(payload);
+
+          on[eventType]?.(safePayload);
+        };
+
+        return () => {
+          eventSource.close();
+        };
+      }, [id, eventTypes, on]);
+    },
+  };
 }
-
-// const { useEvents } = createEventHooks({
-// 	eventTypes: {
-// 		stockPriceChange: z.object({
-// 			ticker: z.string(),
-// 			price: z.number()
-// 		}),
-// 		sendMessage: z.object({
-// 			message: z.string()
-// 		})
-// 	}
-// })
