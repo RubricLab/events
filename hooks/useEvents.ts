@@ -32,7 +32,6 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 				if (!id) return
 
 				let eventSource: EventSource
-				let reconnectTimeout: number
 
 				const connect = () => {
 					// Don't recreate if we already have an open connection
@@ -55,10 +54,10 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 					}
 
 					eventSource.onerror = () => {
-						console.log('error; reconnecting in 5...')
+						console.log('error; reconnecting...')
 						eventSource.close()
-						// Attempt to reconnect after 5 seconds
-						reconnectTimeout = setTimeout(connect, 5 * 1000) as unknown as number
+						// Attempt to reconnect
+						connect()
 					}
 				}
 
@@ -74,7 +73,6 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 				// Cleanup function
 				return () => {
 					if (eventSource) eventSource.close()
-					clearTimeout(reconnectTimeout)
 					clearInterval(keepAliveInterval)
 				}
 			}, [id])
