@@ -1,3 +1,4 @@
+- [2025-01-06] [Use browser-friendly timeout type](https://github.com/RubricLab/events/commit/12542ba319de946b825e703a5c1f6a3903a2402c)
 - [2025-01-06] [Reconnect to event endpoint after failure or timeout](https://github.com/RubricLab/events/commit/04b943be5d413d3e3d7c8316a794c1a69e0f6627)
 - [2024-10-24] [Clean up code](https://github.com/RubricLab/events/commit/1779a672ef8a5771e4b77e62e7c3ba49b985c375)
 - [2024-10-24] [useEvents hook work](https://github.com/RubricLab/events/commit/13bc06d3e26fd6d374b66bf95c43253471f3c925)

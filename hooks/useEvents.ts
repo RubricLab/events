@@ -31,7 +31,7 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 				if (!id) return
 
 				let eventSource: EventSource
-				let reconnectTimeout: Timer
+				let reconnectTimeout: number
 
 				const connect = () => {
 					// Close existing connection if it exists
@@ -53,7 +53,7 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 					eventSource.onerror = () => {
 						eventSource.close()
 						// Attempt to reconnect after 5 seconds
-						reconnectTimeout = setTimeout(connect, 5 * 1000)
+						reconnectTimeout = setTimeout(connect, 5 * 1000) as unknown as number
 					}
 				}
 
