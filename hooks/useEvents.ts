@@ -27,6 +27,7 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 				[key in EventTypeKeys]: (props: z.infer<EventTypes[key]>) => void
 			}
 		}) {
+			// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 			useEffect(() => {
 				if (!id) return
 
@@ -34,6 +35,9 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 				let reconnectTimeout: number
 
 				const connect = () => {
+					// Don't recreate if we already have an open connection
+					if (eventSource?.readyState === EventSource.OPEN) return
+
 					// Close existing connection if it exists
 					if (eventSource) eventSource.close()
 
@@ -60,18 +64,20 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 
 				connect()
 
-				const reconnectInterval = setInterval(() => {
-					if (eventSource.readyState === EventSource.OPEN) {
+				// Only ping to keep the connection alive
+				const keepAliveInterval = setInterval(() => {
+					if (eventSource?.readyState !== EventSource.OPEN) {
 						connect()
 					}
 				}, MAX_DURATION * 1000)
 
+				// Cleanup function
 				return () => {
-					eventSource.close()
+					if (eventSource) eventSource.close()
 					clearTimeout(reconnectTimeout)
-					clearInterval(reconnectInterval)
+					clearInterval(keepAliveInterval)
 				}
-			}, [id, eventTypes, on])
+			}, [id])
 		}
 	}
 }
