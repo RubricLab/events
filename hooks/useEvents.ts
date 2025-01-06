@@ -1,52 +1,76 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
-import { z } from "zod";
-import type { GenericEvents } from "../types";
+import { useEffect } from 'react'
+import { z } from 'zod'
+import { MAX_DURATION } from '../constants'
+import type { GenericEvents } from '../types'
 
 const dataSchema = z.object({
-  eventType: z.string(),
-  payload: z.any(),
-});
+	eventType: z.string(),
+	payload: z.any()
+})
 
 export function createEventHooks<EventTypes extends GenericEvents>({
-  eventTypes,
+	eventTypes
 }: {
-  eventTypes: EventTypes;
+	eventTypes: EventTypes
 }) {
-  type EventTypeKeys = keyof EventTypes;
+	type EventTypeKeys = keyof EventTypes
 
-  return {
-    useEvents({
-      id,
-      on,
-    }: {
-      id: string;
-      on: {
-        [key in EventTypeKeys]: (props: z.infer<EventTypes[key]>) => void;
-      };
-    }) {
-      useEffect(() => {
-        if (!id) return;
+	return {
+		useEvents({
+			id,
+			on
+		}: {
+			id: string
+			on: {
+				[key in EventTypeKeys]: (props: z.infer<EventTypes[key]>) => void
+			}
+		}) {
+			useEffect(() => {
+				if (!id) return
 
-        const eventSource = new EventSource(`/api/events?id=${id}`);
+				let eventSource: EventSource
+				let reconnectTimeout: Timer
 
-        eventSource.onmessage = ({ data }) => {
-          const { eventType, payload } = dataSchema.parse(JSON.parse(data));
+				const connect = () => {
+					// Close existing connection if it exists
+					if (eventSource) eventSource.close()
 
-          if (!eventType || !eventTypes[eventType]) {
-            throw `Unknown event: ${eventType}`;
-          }
+					eventSource = new EventSource(`/api/events?id=${id}`)
 
-          const safePayload = eventTypes[eventType].parse(payload);
+					eventSource.onmessage = ({ data }) => {
+						const { eventType, payload } = dataSchema.parse(JSON.parse(data))
 
-          on[eventType]?.(safePayload);
-        };
+						if (!eventType || !eventTypes[eventType]) {
+							throw `Unknown event: ${eventType}`
+						}
 
-        return () => {
-          eventSource.close();
-        };
-      }, [id, eventTypes, on]);
-    },
-  };
+						const safePayload = eventTypes[eventType].parse(payload)
+						on[eventType]?.(safePayload)
+					}
+
+					eventSource.onerror = () => {
+						eventSource.close()
+						// Attempt to reconnect after 5 seconds
+						reconnectTimeout = setTimeout(connect, 5 * 1000)
+					}
+				}
+
+				connect()
+
+				const reconnectInterval = setInterval(() => {
+					if (eventSource.readyState === EventSource.OPEN) {
+						connect()
+					}
+				}, MAX_DURATION * 1000)
+
+				return () => {
+					eventSource.close()
+					clearTimeout(reconnectTimeout)
+					clearInterval(reconnectInterval)
+				}
+			}, [id, eventTypes, on])
+		}
+	}
 }
