@@ -51,6 +51,7 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 					}
 
 					eventSource.onerror = () => {
+						console.log('error; reconnecting in 5...')
 						eventSource.close()
 						// Attempt to reconnect after 5 seconds
 						reconnectTimeout = setTimeout(connect, 5 * 1000) as unknown as number

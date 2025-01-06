@@ -1,3 +1,4 @@
+- [2025-01-06] [Add error log](https://github.com/RubricLab/events/commit/ddc3710d64c57c8396b262c479a11e06ac7a2c75)
 - [2025-01-06] [Drop Zod version](https://github.com/RubricLab/events/commit/9a7941f9b63ef530410fbc49d60fe6b4e7faa6d8)
 - [2025-01-06] [Use browser-friendly timeout type](https://github.com/RubricLab/events/commit/12542ba319de946b825e703a5c1f6a3903a2402c)
 - [2025-01-06] [Reconnect to event endpoint after failure or timeout](https://github.com/RubricLab/events/commit/04b943be5d413d3e3d7c8316a794c1a69e0f6627)
