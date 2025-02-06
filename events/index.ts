@@ -34,11 +34,11 @@ export function createEventsHandler({ redisURL }: { redisURL: string }) {
 
 	return {
 		maxDuration: MAX_DURATION,
-		async eventsHandler(req: Request): Promise<Response> {
+		async GET(req: Request): Promise<Response> {
 			const { searchParams } = new URL(req.url)
 			const id = searchParams.get('id')
 
-			if (!id) return new Response('No id provided', { status: 400 })
+			if (!id) return new Response('No ID provided', { status: 400 })
 
 			const { writable, readable } = new TransformStream()
 			const writer = writable.getWriter()

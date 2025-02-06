@@ -1,3 +1,4 @@
+- [2025-02-06] [Fix retry loop](https://github.com/RubricLab/events/commit/9237d47d5c2d39cf5231ea520291e0bb871c71d8)
 - [2025-02-06] [Avoid bundling server-side code into hook. Bump Zod.](https://github.com/RubricLab/events/commit/d81503d74154983bfa2f9d6b2a04cddaf569d36b)
 - [2025-01-06] [Reconnect immediately on error](https://github.com/RubricLab/events/commit/92bdcca1192966681afa0411f89c001bc9d6684a)
 - [2025-01-06] [Fix event source recreation](https://github.com/RubricLab/events/commit/fe2eecd1044bd62c6b585ec0da170c2b2f076194)

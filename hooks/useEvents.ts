@@ -53,11 +53,10 @@ export function createEventHooks<EventTypes extends GenericEvents>({
 						on[eventType]?.(safePayload)
 					}
 
-					eventSource.onerror = () => {
+					eventSource.onerror = e => {
 						console.log('error; reconnecting...')
+						console.error(e)
 						eventSource.close()
-						// Attempt to reconnect
-						connect()
 					}
 				}
 
