@@ -10,7 +10,7 @@ const dataSchema = z.object({
 	payload: z.any()
 })
 
-export function createEventHooks<EventTypes extends GenericEvents>({
+export function createEventsClient<EventTypes extends GenericEvents>({
 	eventTypes
 }: {
 	eventTypes: EventTypes
