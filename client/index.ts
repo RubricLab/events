@@ -23,7 +23,7 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 		}: {
 			id: string
 			on: {
-				[key in EventTypeKeys]: (props: z.infer<EventTypes[key]>) => void
+				[key in EventTypeKeys]?: (props: z.infer<EventTypes[key]>) => void
 			}
 		}) {
 			const connect = () => {
