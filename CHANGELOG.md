@@ -1,3 +1,4 @@
+- [2025-03-05] [Peer-version React to 19](https://github.com/RubricLab/events/commit/c63acd11e8d49c4eca24145d519eeb8048ba9553)
 - [2025-02-24] [Make callbacks optional](https://github.com/RubricLab/events/commit/f5d83a9e54c2b1a2dc251ec278b5b1c3952a2bfd)
 - [2025-02-24] [Use Upstash reconnection example](https://github.com/RubricLab/events/commit/67b03b6b9a4b4147ff4fbed16e31fe6076747ef3)
 - [2025-02-12] [Flatten exports](https://github.com/RubricLab/events/commit/2dc974ac8fb40398f4759016f72f327ef5b1d532)
