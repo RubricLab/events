@@ -1,3 +1,3 @@
-import type { ZodType } from "zod";
+import type { ZodType } from 'zod'
 
-export type GenericEvents = Record<string, ZodType>;
+export type GenericEvents = Record<string, ZodType>
