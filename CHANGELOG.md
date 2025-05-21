@@ -1,3 +1,4 @@
+- [2025-05-21] [bump zod](https://github.com/RubricLab/events/commit/23c8768b682edfae2e7bd9fb228f85d98ccf07bc)
 - [2025-04-07] [format, bleed stash](https://github.com/RubricLab/events/commit/671ff00a2cc819059a02437c3d38d4e879206946)
 - [2025-03-05] [Peer-version React to 19](https://github.com/RubricLab/events/commit/c63acd11e8d49c4eca24145d519eeb8048ba9553)
 - [2025-02-24] [Make callbacks optional](https://github.com/RubricLab/events/commit/f5d83a9e54c2b1a2dc251ec278b5b1c3952a2bfd)
