@@ -10,7 +10,7 @@
     "lint:fix": "bun x biome lint . --write --unsafe"
   },
   "name": "@rubriclab/events",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "dependencies": {
     "@rubriclab/config": "*",
     "@rubriclab/package": "*",
