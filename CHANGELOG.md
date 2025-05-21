@@ -1,3 +1,4 @@
+- [2025-05-21] [move to lib](https://github.com/RubricLab/events/commit/89a6317f1e9a63e6ec8b2a33e8e99db05a42201d)
 - [2025-05-21] [seperate exports](https://github.com/RubricLab/events/commit/2efc31f4715d6e29721ef2c47842774095cac8d1)
 - [2025-05-21] [move to lib](https://github.com/RubricLab/events/commit/cdecc9977dbef7a36a6d7e491cd7dc831b4328d4)
 - [2025-05-21] [bump zod](https://github.com/RubricLab/events/commit/23c8768b682edfae2e7bd9fb228f85d98ccf07bc)
