@@ -1,3 +1,4 @@
+- [2025-05-22] [move to zod/v4](https://github.com/RubricLab/events/commit/b401a1445fa89a2712930ab07f3fa1992098a746)
 - [2025-05-21] [patch server boundary issues, react version](https://github.com/RubricLab/events/commit/c628959e5c7c928a8ba0091cb3c9f604f49a7c79)
 - [2025-05-21] [event types helper function](https://github.com/RubricLab/events/commit/f64f8ff4868b748f7119694caa0002e0f82b5f15)
 - [2025-05-21] [move to lib](https://github.com/RubricLab/events/commit/89a6317f1e9a63e6ec8b2a33e8e99db05a42201d)

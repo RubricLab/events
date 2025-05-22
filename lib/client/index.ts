@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import type { GenericEvents } from '../types'
 
 const dataSchema = z.object({

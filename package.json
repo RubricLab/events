@@ -10,12 +10,12 @@
     "lint:fix": "bun x biome lint . --write --unsafe"
   },
   "name": "@rubriclab/events",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "dependencies": {
     "@rubriclab/config": "*",
     "@rubriclab/package": "*",
     "ioredis": "^5.4.1",
-    "zod": "3.25.17"
+    "zod": "3.25.21"
   },
   "peerDependencies": {
     "react": "19.0.0"
