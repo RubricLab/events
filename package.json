@@ -10,7 +10,7 @@
     "lint:fix": "bun x biome lint . --write --unsafe"
   },
   "name": "@rubriclab/events",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "dependencies": {
     "@rubriclab/config": "*",
     "@rubriclab/package": "*",
@@ -18,7 +18,7 @@
     "zod": "3.25.17"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "19.0.0"
   },
   "simple-git-hooks": {
     "post-commit": "bun run rubriclab-postcommit"
