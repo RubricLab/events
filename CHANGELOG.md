@@ -1,3 +1,4 @@
+- [2025-06-01] [Point to server by default](https://github.com/RubricLab/events/commit/746b18db83c2f25207ebb71014bf85041439e601)
 - [2025-06-01] [Fix entrypoint file](https://github.com/RubricLab/events/commit/ce504b40899971e76e93aaf888317cd153cbae71)
 - [2025-04-07] [format, bleed stash](https://github.com/RubricLab/events/commit/671ff00a2cc819059a02437c3d38d4e879206946)
 - [2025-03-05] [Peer-version React to 19](https://github.com/RubricLab/events/commit/c63acd11e8d49c4eca24145d519eeb8048ba9553)
