@@ -1,7 +1,5 @@
 {
   "scripts": {
-    "generate": "bun scripts/generate.ts",
-    "watch": "bun scripts/watch.ts",
     "prepare": "bun x simple-git-hooks",
     "bleed": "bun x npm-check-updates -u",
     "clean": "rm -rf .next && rm -rf node_modules",
@@ -10,8 +8,8 @@
     "lint:fix": "bun x biome lint . --write --unsafe"
   },
   "name": "@rubriclab/events",
-  "version": "0.0.25",
-  "main": "server/index.ts",
+  "version": "0.0.26",
+  "main": "index.ts",
   "dependencies": {
     "@rubriclab/config": "*",
     "@rubriclab/package": "*",
