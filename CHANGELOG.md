@@ -1,3 +1,7 @@
+
+- [2025-06-01] [Point to index file](https://github.com/RubricLab/events/commit/7824a9828cd6924ba46bb29bb160e9a05a4bafc2)
+- [2025-06-01] [Point to server by default](https://github.com/RubricLab/events/commit/746b18db83c2f25207ebb71014bf85041439e601)
+- [2025-06-01] [Fix entrypoint file](https://github.com/RubricLab/events/commit/ce504b40899971e76e93aaf888317cd153cbae71)
 - [2025-05-22] [move to zod/v4](https://github.com/RubricLab/events/commit/b401a1445fa89a2712930ab07f3fa1992098a746)
 - [2025-05-21] [patch server boundary issues, react version](https://github.com/RubricLab/events/commit/c628959e5c7c928a8ba0091cb3c9f604f49a7c79)
 - [2025-05-21] [event types helper function](https://github.com/RubricLab/events/commit/f64f8ff4868b748f7119694caa0002e0f82b5f15)
