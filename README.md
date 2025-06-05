@@ -1,12 +1,12 @@
 # @rubriclab/events
-The Actions package aims to provide a powerful and simple way to define actions (which are essentially API primitives) and execute them safely with JSON serializable payloads.
+
+The Events package aims to provide a powerful and simple way to define events which can be emitted from the server and consumed on the client.
 
 It is part of Rubric's architecture for Generative UI when used with:
 - [@rubriclab/actions](https://github.com/rubriclab/actions)
 - [@rubriclab/blocks](https://github.com/rubriclab/blocks)
 - [@rubriclab/chains](https://github.com/rubriclab/chains)
 - [@rubriclab/agents](https://github.com/rubriclab/agents)
-- [@rubriclab/events](https://github.com/rubriclab/events)
 
 [Demo](https://chat.rubric.sh)
 
