@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import type { GenericEvents } from '../types'
 
 const dataSchema = z.object({
@@ -10,8 +10,10 @@ const dataSchema = z.object({
 })
 
 export function createEventsClient<EventTypes extends GenericEvents>({
+	url,
 	eventTypes
 }: {
+	url: string
 	eventTypes: EventTypes
 }) {
 	type EventTypeKeys = keyof EventTypes
@@ -27,7 +29,7 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 			}
 		}) {
 			const connect = () => {
-				const eventSource = new EventSource(`/api/events?id=${id}`)
+				const eventSource = new EventSource(`${url}?id=${id}`)
 
 				eventSource.onmessage = ({ data }) => {
 					const { eventType, payload } = dataSchema.parse(JSON.parse(data))
@@ -36,7 +38,9 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 						throw `Unknown event: ${eventType}`
 					}
 
-					const safePayload = eventTypes[eventType].parse(payload)
+					const safePayload = eventTypes[eventType].parse(payload) as z.infer<
+						(typeof eventTypes)[typeof eventType]
+					>
 					on[eventType]?.(safePayload)
 				}
 

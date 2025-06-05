@@ -1,28 +1,34 @@
 {
-  "scripts": {
-    "prepare": "bun x simple-git-hooks",
-    "bleed": "bun x npm-check-updates -u",
-    "clean": "rm -rf .next && rm -rf node_modules",
-    "format": "bun x biome format --write .",
-    "lint": "bun x biome check .",
-    "lint:fix": "bun x biome lint . --write --unsafe"
-  },
-  "name": "@rubriclab/events",
-  "version": "0.0.26",
-  "main": "index.ts",
-  "dependencies": {
-    "@rubriclab/config": "*",
-    "@rubriclab/package": "*",
-    "ioredis": "^5.6.1",
-    "zod": "3.24.2"
-  },
-  "peerDependencies": {
-    "react": "^19.0.0"
-  },
-  "simple-git-hooks": {
-    "post-commit": "bun run rubriclab-postcommit"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"scripts": {
+		"generate": "bun scripts/generate.ts",
+		"watch": "bun scripts/watch.ts",
+		"prepare": "bun x simple-git-hooks",
+		"bleed": "bun x npm-check-updates -u",
+		"clean": "rm -rf .next && rm -rf node_modules",
+		"format": "bun x biome format --write .",
+		"lint": "bun x biome check .",
+		"lint:fix": "bun x biome lint . --write --unsafe"
+	},
+	"name": "@rubriclab/events",
+	"version": "0.0.33",
+	"dependencies": {
+		"@rubriclab/config": "*",
+		"@rubriclab/package": "*",
+		"ioredis": "^5.4.1",
+		"zod": "latest"
+	},
+	"peerDependencies": {
+		"react": "19.0.0"
+	},
+	"simple-git-hooks": {
+		"post-commit": "bun run rubriclab-postcommit"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"exports": {
+		".": "./lib/index.ts",
+		"./server": "./lib/server/index.ts",
+		"./client": "./lib/client/index.ts"
+	}
 }

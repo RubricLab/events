@@ -1,5 +1,5 @@
 import Redis from 'ioredis'
-import type { z } from 'zod'
+import type { z } from 'zod/v4'
 import { MAX_DURATION } from '../constants'
 import type { GenericEvents } from '../types'
 
