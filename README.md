@@ -1,6 +1,6 @@
 # @rubriclab/events
 
-The Events package aims to provide a powerful and simple way to define events which can be emitted from the server and consumed on the client.
+This Events package gives you a type-safe, Redis-backed pub/sub layer that streams events from your server to the browser over Server-Sent Events (SSE).
 
 It is part of Rubric's architecture for Generative UI when used with:
 - [@rubriclab/actions](https://github.com/rubriclab/actions)
