@@ -10,8 +10,10 @@ const dataSchema = z.object({
 })
 
 export function createEventsClient<EventTypes extends GenericEvents>({
+	url,
 	eventTypes
 }: {
+	url: string
 	eventTypes: EventTypes
 }) {
 	type EventTypeKeys = keyof EventTypes
@@ -27,7 +29,7 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 			}
 		}) {
 			const connect = () => {
-				const eventSource = new EventSource(`/api/events?id=${id}`)
+				const eventSource = new EventSource(`${url}?id=${id}`)
 
 				eventSource.onmessage = ({ data }) => {
 					const { eventType, payload } = dataSchema.parse(JSON.parse(data))
