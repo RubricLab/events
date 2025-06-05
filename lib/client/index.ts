@@ -38,7 +38,9 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 						throw `Unknown event: ${eventType}`
 					}
 
-					const safePayload = eventTypes[eventType].parse(payload)
+					const safePayload = eventTypes[eventType].parse(payload) as z.infer<
+						(typeof eventTypes)[typeof eventType]
+					>
 					on[eventType]?.(safePayload)
 				}
 
