@@ -54,7 +54,6 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 				return eventSource
 			}
 
-			// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 			useEffect(() => {
 				if (!id) return
 

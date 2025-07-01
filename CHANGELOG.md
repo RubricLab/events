@@ -1,3 +1,4 @@
+- [2025-07-01] [run format](https://github.com/RubricLab/events/commit/dbff16d66df79604f274b14ad4b5abed2eda2286)
 - [2025-07-01] [consolidate biome format script](https://github.com/RubricLab/events/commit/1686c25cfbcd32d74f49d24ff6c83be0a915d2ff)
 
 - [2025-06-01] [Point to index file](https://github.com/RubricLab/events/commit/7824a9828cd6924ba46bb29bb160e9a05a4bafc2)

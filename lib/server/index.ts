@@ -13,7 +13,7 @@ export function createEventsServer<EventTypes extends GenericEvents>({
 	type EventTypeKeys = keyof typeof eventTypes
 
 	const subscriber = new Redis(redisURL)
-	
+
 	const publisher = new Redis(redisURL)
 
 	async function publish<EventTypeKey extends EventTypeKeys>({
@@ -30,13 +30,13 @@ export function createEventsServer<EventTypes extends GenericEvents>({
 
 	async function GET(req: Request): Promise<Response> {
 		const { searchParams } = new URL(req.url)
-		
+
 		const id = searchParams.get('id')
 
 		if (!id) return new Response('No ID provided', { status: 400 })
 
 		const { writable, readable } = new TransformStream()
-		
+
 		const writer = writable.getWriter()
 
 		const encoder = new TextEncoder()
@@ -47,7 +47,7 @@ export function createEventsServer<EventTypes extends GenericEvents>({
 		}
 
 		subscriber.subscribe(id)
-		
+
 		subscriber.on('message', listener)
 
 		req.signal.addEventListener('abort', () => {
@@ -58,16 +58,16 @@ export function createEventsServer<EventTypes extends GenericEvents>({
 
 		return new Response(readable, {
 			headers: {
-				'Content-Type': 'text/event-stream',
 				'Cache-Control': 'no-cache',
-				Connection: 'keep-alive'
+				Connection: 'keep-alive',
+				'Content-Type': 'text/event-stream'
 			}
 		})
 	}
 
 	return {
+		GET,
 		maxDuration: MAX_DURATION,
-		publish,
-		GET
+		publish
 	}
 }
