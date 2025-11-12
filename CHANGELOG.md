@@ -1,3 +1,4 @@
+- [2025-11-12] [Trigger release](https://github.com/RubricLab/events/commit/29230572fe2d66349b134c25bb5f717cf9f28f0f)
 - [2025-07-01] [run format](https://github.com/RubricLab/events/commit/dbff16d66df79604f274b14ad4b5abed2eda2286)
 - [2025-07-01] [consolidate biome format script](https://github.com/RubricLab/events/commit/1686c25cfbcd32d74f49d24ff6c83be0a915d2ff)
 

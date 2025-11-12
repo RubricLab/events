@@ -14,7 +14,7 @@ It is part of Rubric's architecture for Generative UI when used with:
 ### Installation
 `bun add @rubriclab/events`
 
-> @rubriclab scope packages are not built, they are all raw typescript. If using in a next.js app, make sure to transpile.
+> @rubriclab scope packages are not built, they are all raw typescript. If using in a Next.js app, make sure to transpile.
 
 ```ts
 // next.config.ts
