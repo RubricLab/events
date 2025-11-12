@@ -9,6 +9,8 @@ const dataSchema = z.object({
 	payload: z.any()
 })
 
+const DEFAULT_TIMEOUT = 1
+
 export function createEventsClient<EventTypes extends GenericEvents>({
 	url,
 	eventTypes
@@ -28,6 +30,8 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 				[key in EventTypeKeys]?: (props: z.infer<EventTypes[key]>) => void
 			}
 		}) {
+			let timeout = DEFAULT_TIMEOUT
+
 			const connect = () => {
 				const eventSource = new EventSource(`${url}?id=${id}`)
 
@@ -42,13 +46,18 @@ export function createEventsClient<EventTypes extends GenericEvents>({
 						(typeof eventTypes)[typeof eventType]
 					>
 					on[eventType]?.(safePayload)
+
+					timeout = DEFAULT_TIMEOUT
 				}
 
 				eventSource.onerror = e => {
+					// Exponentially backoff on reconnection attempts
+					timeout *= 2
+
 					console.log('Error; reconnecting...')
 					console.error(e)
 					eventSource.close()
-					setTimeout(connect, 1)
+					setTimeout(connect, timeout)
 				}
 
 				return eventSource
