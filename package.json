@@ -3,7 +3,7 @@
 		"@rubriclab/config": "*",
 		"@rubriclab/package": "*",
 		"ioredis": "latest",
-		"zod": "latest"
+		"zod": "4.1.13"
 	},
 	"exports": {
 		".": "./lib/index.ts",
