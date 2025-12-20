@@ -1,3 +1,4 @@
+- [2025-12-19] [Add repo field to package](https://github.com/RubricLab/events/commit/7377ceacafc8975323c61736e7bf135001ed8c7d)
 - [2025-12-19] [Trigger release](https://github.com/RubricLab/events/commit/f93b24bd2ff917a777e791acd7a0bd880be82188)
 - [2025-11-12] [Trigger release](https://github.com/RubricLab/events/commit/29230572fe2d66349b134c25bb5f717cf9f28f0f)
 - [2025-07-01] [run format](https://github.com/RubricLab/events/commit/dbff16d66df79604f274b14ad4b5abed2eda2286)

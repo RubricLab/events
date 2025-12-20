@@ -14,6 +14,10 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RubricLab/events.git"
+	},
 	"scripts": {
 		"bleed": "bun x npm-check-updates -u",
 		"clean": "rm -rf .next && rm -rf node_modules",
@@ -25,5 +29,5 @@
 	"simple-git-hooks": {
 		"post-commit": "bun x @rubriclab/package post-commit"
 	},
-	"version": "0.0.39"
+	"version": "0.0.40"
 }
